@@ -11,3 +11,7 @@
 [1.5.1 快速排序](https://github.com/SwitHaoy/Algorithms/blob/master/src/main/java/sort/quickSort/QuickSort.java)<br />
 [1.5.2 快速排序-三向切分](https://github.com/SwitHaoy/Algorithms/blob/master/src/main/java/sort/quickSort/QuickSortThreeWayCut.java)<br />
 [1.6 堆排序](https://github.com/SwitHaoy/Algorithms/blob/master/src/main/java/sort/selection/HeapSort.java)<br />
+
+## 0. 一些别的算法
+[1 摩尔投票算法](https://github.com/SwitHaoy/Algorithms/blob/master/src/main/java/algorithms/MooreVoting.java)<br />
+
