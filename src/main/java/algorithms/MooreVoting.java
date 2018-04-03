@@ -33,7 +33,6 @@ public class MooreVoting {
                 count++;
             }
         }
-
         int verification = 0;
         for (int a : nums) {
             if (a == res) {
