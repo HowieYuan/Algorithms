@@ -13,5 +13,7 @@
 [1.6 堆排序](https://github.com/SwitHaoy/Algorithms/blob/master/src/main/java/sort/selection/HeapSort.java)<br />
 
 ## 0. 一些别的算法
-[1 摩尔投票算法](https://github.com/SwitHaoy/Algorithms/blob/master/src/main/java/algorithms/MooreVoting.java)<br />
+[1. 摩尔投票算法](https://github.com/SwitHaoy/Algorithms/blob/master/src/main/java/algorithms/MooreVoting.java)<br />
+[2. DP 动态规划](https://github.com/HowieYuan/Algorithms/blob/master/src/main/java/algorithms/DP.java)<br />
+[3. Lomuto 划分策略](https://github.com/HowieYuan/Algorithms/blob/master/src/main/java/algorithms/LomutoPartition.java)<br />
 
