@@ -1,12 +1,12 @@
 package sort.quickSort;
 
-import util.ArrayUtil;
+import util.ArrayUtil;  // 3 1 2 5 8 4
 
 /**
  * Created with IntelliJ IDEA
  *
  * @author yuanhaoyue swithaoy@gmail.com
- * @description
+ * @description 划分时从数组两边分别寻找，将最值交换
  * @date 2018-02-04
  * @time 16:32
  */
