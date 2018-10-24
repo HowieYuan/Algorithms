@@ -1,4 +1,4 @@
-package search;
+package search.binarySearch;
 
 /**
  * Created with IntelliJ IDEA
@@ -20,7 +20,8 @@ public class BinarySearch {
         int low = 0;
         int high = a.length - 1;
         while (low <= high) {
-            int middle = (low + high) / 2;
+            // (low + high) / 2;
+            int middle = low + (high - low) / 2;
             if (x == a[middle]) {
                 return middle;
             } else if (x < a[middle]) {
