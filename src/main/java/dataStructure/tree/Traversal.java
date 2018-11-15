@@ -1,5 +1,11 @@
 package dataStructure.tree;
 
+import java.util.ArrayDeque;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Stack;
+import java.util.concurrent.LinkedBlockingQueue;
+
 /**
  * Created with IntelliJ IDEA
  *
@@ -16,7 +22,7 @@ public class Traversal {
         if (root == null) {
             return;
         }
-        System.out.println(root);
+        System.out.println(root.value);
         preOrder(root.left);
         preOrder(root.right);
     }
@@ -28,9 +34,9 @@ public class Traversal {
         if (root == null) {
             return;
         }
-        preOrder(root.left);
-        System.out.println(root);
-        preOrder(root.right);
+        inOrder(root.left);
+        System.out.println(root.value);
+        inOrder(root.right);
     }
 
     /**
@@ -40,18 +46,53 @@ public class Traversal {
         if (root == null) {
             return;
         }
-        preOrder(root.left);
-        preOrder(root.right);
-        System.out.println(root);
+        postOrder(root.left);
+        postOrder(root.right);
+        System.out.println(root.value);
     }
 
-    public class Node {
-        private Object value;
+    /**
+     * 层次遍历
+     */
+    void cenOrder(Node root) {
+        if (root == null) {
+            return;
+        }
+        Queue<Node> queue = new LinkedBlockingQueue<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            Node n = queue.remove();
+            if (n.left != null) {
+                queue.add(n.left);
+            }
+            if (n.right != null) {
+                queue.add(n.right);
+            }
+            System.out.println(n.value);
+        }
+    }
+
+    public static class Node {
+        private int value;
         private Node left;
         private Node right;
 
-        public Node(Object value) {
+        public Node(int value) {
             this.value = value;
         }
+    }
+
+    public static void main(String[] args) {
+        Node root = new Node(1);
+        root.left = new Node(2);
+        root.right = new Node(3);
+        Node node = root.left;
+        node.left = new Node(4);
+        node.right = new Node(5);
+        node = root.right;
+        node.left = new Node(6);
+        node.right = new Node(7);
+
+        new Traversal().cenOrder(root);
     }
 }

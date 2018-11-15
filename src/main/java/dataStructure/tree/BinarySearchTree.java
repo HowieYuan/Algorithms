@@ -1,6 +1,7 @@
 package dataStructure.tree;
 
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
+import java.util.Queue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Created with IntelliJ IDEA
@@ -11,14 +12,14 @@ import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
  * @time 17:11
  */
 public class BinarySearchTree {
-    private Node tree;
+    private Node root;
 
     public Node find(int data) {
-        Node n = tree;
+        Node n = root;
         while (n != null) {
-            if (data < tree.value) {
+            if (data < n.value) {
                 n = n.left;
-            } else if (data > tree.value) {
+            } else if (data > n.value) {
                 n = n.right;
             } else {
                 return n;
@@ -28,11 +29,11 @@ public class BinarySearchTree {
     }
 
     public void insert(int data) {
-        if (tree == null) {
-            tree = new Node(data);
+        if (root == null) {
+            root = new Node(data);
             return;
         }
-        Node node = tree;
+        Node node = root;
         while (true) {
             if (node.value < data) {
                 if (node.right == null) {
@@ -53,8 +54,9 @@ public class BinarySearchTree {
     }
 
     public void delete(int data) {
-        Node n = tree;
+        Node n = root;
         Node father = null;
+        //找到待删除点
         while (data != n.value) {
             father = n;
             if (n.value > data) {
@@ -69,6 +71,7 @@ public class BinarySearchTree {
                 n = n.right;
             }
         }
+        //左右都存在子树的情况
         if (n.left != null && n.right != null) {
             Node min = n.right;
             Node minFather = n.right;
@@ -77,9 +80,14 @@ public class BinarySearchTree {
                 min = min.left;
             }
             n.value = min.value;
-            minFather.left = null;
+            if (min == n.right) {
+                n.right = min.right;
+            } else {
+                minFather.left = min.right;
+            }
             return;
         }
+        //目标为叶子结点或者只有一边有子树的情况
         Node child;
         if (n.left != null) {
             child = n.left;
@@ -90,15 +98,42 @@ public class BinarySearchTree {
         }
 
         if (father == null) {
-            tree = child;
+            root = child;
         } else if (father.left == n) {
             father.left = child;
-        } else if(father.right == n) {
+        } else if (father.right == n) {
             father.right = child;
         }
     }
 
-    private class Node {
+    public Node findMax() {
+        Node node = root;
+        while (node != null) {
+            node = node.right;
+        }
+        return node;
+    }
+
+    public int height() {
+        Node node = root;
+        int left = getHeight(root.left);
+        int right = getHeight(root.right);
+        return (left > right ? left : right) + 1;
+    }
+
+    private int getHeight(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        if (node.left == null && node.right == null) {
+            return 1;
+        }
+        int left = getHeight(node.left);
+        int right = getHeight(node.right);
+        return (left > right ? left : right) + 1;
+    }
+
+    private static class Node {
         private int value;
         private Node left;
         private Node right;
