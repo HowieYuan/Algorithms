@@ -48,7 +48,7 @@ public class BubbleSort {
     }
 
     public static void main(String[] args) {
-        int[] a = {2, 1, 3, 6, 4, 1, 1};
+        int[] a = {0, 2, 1, 3, 4, 6, 4, 1, 1, 9};
         System.out.println(Arrays.toString(bubbleSort(a)));
     }
 }

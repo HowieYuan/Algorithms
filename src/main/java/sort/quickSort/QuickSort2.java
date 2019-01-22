@@ -30,19 +30,22 @@ public class QuickSort2 {
         quickSort(nums, m + 1, q);
     }
 
-    private static int partition(int[] nums, int p, int q) {
-        int i = p, j = p;
-        for (;j < q; j++) {
-            if (nums[j] < nums[q]) {
-                int temp = nums[i];
-                nums[i] = nums[j];
-                nums[j] = temp;
-                i++;
+    private static int partition(int[] a, int low, int high) {
+        int middle = low;
+        for (int i = low; i < high; i++) {
+            if (a[i] < a[high]) {
+                if (i == middle) {
+                    middle++;
+                } else {
+                    int temp = a[i];
+                    a[i] = a[middle];
+                    a[middle++] = temp;
+                }
             }
         }
-        int temp = nums[i];
-        nums[i] = nums[q];
-        nums[q] = temp;
-        return i;
+        int temp = a[high];
+        a[high] = a[middle];
+        a[middle] = temp;
+        return middle;
     }
 }
