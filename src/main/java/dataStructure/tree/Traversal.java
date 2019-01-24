@@ -1,9 +1,6 @@
 package dataStructure.tree;
 
-import java.util.ArrayDeque;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
@@ -58,7 +55,7 @@ public class Traversal {
         if (root == null) {
             return;
         }
-        Queue<Node> queue = new LinkedBlockingQueue<>();
+        Queue<Node> queue = new LinkedList<>();
         queue.add(root);
         while (!queue.isEmpty()) {
             Node n = queue.remove();
