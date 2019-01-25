@@ -16,10 +16,14 @@ public class EightQueens {
             printEightQueens(matrix);
             return; // 8 行棋子都放好了，已经没法再往下递归了，所以就 return
         }
-        for (int columns = 0; columns < 8; columns++) { // 每一行都有 8 中放法
-            if (isOk(rows, columns)) { // 有些放法不满足要求
-                matrix[rows] = columns; // 第 row 行的棋子放到了 column 列
-                cal8queens(rows + 1); // 考察下一行
+        // 每一行都有 8 中放法
+        for (int columns = 0; columns < 8; columns++) {
+            // 有些放法不满足要求
+            if (isOk(rows, columns)) {
+                // 第 row 行的棋子放到了 column 列
+                matrix[rows] = columns;
+                // 考察下一行
+                cal8queens(rows + 1);
             }
         }
     }
