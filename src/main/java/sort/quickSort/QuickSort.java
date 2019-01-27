@@ -57,7 +57,32 @@ public class QuickSort {
         return h;
     }
 
-    private int partition2(int[] array, int start, int end) {
+    /**
+     * 推荐
+     */
+    private static int partition2(int[] array, int start, int end) {
+        int temp = array[start];
+        while (start < end) {
+            while (array[end] >= temp && start < end) {
+                end--;
+            }
+            if (start < end) {
+                array[start] = array[end];
+                start++;
+            }
+            while (array[start] < temp && start < end) {
+                start++;
+            }
+            if (start < end) {
+                array[end] = array[start];
+                end--;
+            }
+        }
+        array[start] = temp;
+        return start;
+    }
+
+    private int partition3(int[] array, int start, int end) {
         int middleValue = array[end];
         int e = end;
         end--;
