@@ -66,18 +66,25 @@ public class QuickSort {
             while (array[end] >= temp && start < end) {
                 end--;
             }
+            // 从数组结尾开始找到第一个比temp小的索引
             if (start < end) {
+                // 交换位置
                 array[start] = array[end];
+                // 记住这里end的位置是空的
                 start++;
             }
+            /* 切换扫描指针 */
             while (array[start] < temp && start < end) {
                 start++;
             }
+            // 从数组开头开始找到第一个比temp大的索引
             if (start < end) {
                 array[end] = array[start];
+                // 这里start的位置是空的
                 end--;
             }
         }
+        // start == end
         array[start] = temp;
         return start;
     }
