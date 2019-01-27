@@ -2,6 +2,8 @@ package sort.quickSort;
 
 import util.ArrayUtil;  // 3 1 2 5 8 4
 
+import java.util.Arrays;
+
 /**
  * Created with IntelliJ IDEA
  *
@@ -21,7 +23,7 @@ public class QuickSort {
         if (low >= high) {
             return;
         }
-        int i = partition(a, low, high);
+        int i = partition2(a, low, high);
         quickSort(a, low, i - 1);
         quickSort(a, i + 1, high);
     }
@@ -55,6 +57,27 @@ public class QuickSort {
         return h;
     }
 
+    private int partition2(int[] array, int start, int end) {
+        int middleValue = array[end];
+        int e = end;
+        end--;
+        while (start < end) {
+            while (array[start] < middleValue && end > start) {
+                start++;
+            }
+            while (array[end] >= middleValue && end > start) {
+                end--;
+            }
+            if (start < end) {
+                ArrayUtil.swap(array, start, end);
+            }
+        }
+        if (array[start] > array[e]) {
+            ArrayUtil.swap(array, start, e);
+        }
+        return start;
+    }
+
     /**
      * 对于小规模子数组，使用插入排序的改进
      */
@@ -69,5 +92,10 @@ public class QuickSort {
         }
     }
 
+    public static void main(String[] args) {
+        System.out.println(Arrays.toString(new QuickSort().quickSort(
+                        new int[]{2,1,2,1,2,1,2,1}
+                )));
+    }
 
 }

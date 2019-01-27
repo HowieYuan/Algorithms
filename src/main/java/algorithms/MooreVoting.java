@@ -19,7 +19,8 @@ public class MooreVoting {
      * 显然这个数字只可能有一个。
      *
      * 摩尔投票算法是基于这个事实：每次从序列里选择两个不相同的数字删除掉（或称为“抵消”），
-     * 最后剩下一个数字或几个相同的数字，就是出现次数大于总数一半的那个。
+     * 最后剩下一个数字或几个相同的数字，不一定是出现次数大于总数一半的那个。
+     * 但是抵消掉的，肯定不是结果
      */
     private int majorityElement(int[] nums) {
         int count = 0, res = 0;
@@ -27,7 +28,7 @@ public class MooreVoting {
             if(count == 0) {
                 res = a;
                 count++;
-            } else if (!(res == a)) {
+            } else if (res != a) {
                 count--;
             } else {
                 count++;
