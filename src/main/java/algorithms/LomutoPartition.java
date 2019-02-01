@@ -9,6 +9,7 @@ import java.util.Arrays;
  *
  * @author yuanhaoyue swithaoy@gmail.com
  * @description Lomuto 划分策略
+ *              可用于快排的划分算法，代码十分简洁
  * @date 2018-04-19
  * @time 22:32
  */

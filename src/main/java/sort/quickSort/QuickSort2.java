@@ -30,6 +30,9 @@ public class QuickSort2 {
         quickSort(nums, m + 1, q);
     }
 
+    /**
+     * Lomuto 划分策略
+     */
     private static int partition(int[] a, int low, int high) {
         int middle = low;
         for (int i = low; i < high; i++) {
