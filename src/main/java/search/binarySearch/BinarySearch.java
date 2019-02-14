@@ -1,5 +1,7 @@
 package search.binarySearch;
 
+import java.util.Iterator;
+
 /**
  * Created with IntelliJ IDEA
  *
@@ -83,20 +85,20 @@ public class BinarySearch {
     /**
      * 寻找最后一个与目标数值相等的数
      */
-    public static int searchLast(int[] a, int x) {
-        int h = a.length - 1;
-        int l = 0;
-        while (l <= h) {
-            int m = (h + l) / 2;
-            if (a[m] > x) {
-                h = m - 1;
-            } else if (a[m] < x) {
-                l = m + 1;
+    public static int searchLast(int[] array, int num) {
+        int start = 0;
+        int end = array.length - 1;
+        while (start <= end) {
+            int middle = (start + end) / 2;
+            if (num > array[middle]) {
+                start = middle + 1;
+            } else if (num < array[middle]) {
+                end = middle - 1;
             } else {
-                if (m == a.length - 1 || a[m + 1] != x) {
-                    return m;
+                if (middle == end || array[middle + 1] != num) {
+                    return middle;
                 }
-                l = m + 1;
+                start = middle + 1;
             }
         }
         return -1;
@@ -105,22 +107,23 @@ public class BinarySearch {
     /**
      * 寻找第一个大于等于目标数值的数
      */
-    public static int searchFirstBigger(int[] a, int x) {
-        int h = a.length - 1;
-        int l = 0;
-        int m = 0;
-        while (l <= h) {
-            m = (h + l) / 2;
-            if (a[m] >= x) {
-                if (m == 0 || a[m - 1] < x) {
-                    return m;
+    public static int searchFirstBigger(int[] array, int num) {
+        int start = 0;
+        int end = array.length - 1;
+        while (start <= end) {
+            int middle = (start + end) / 2;
+            if (num > array[middle]) {
+                start = middle + 1;
+            } else if (num < array[middle]) {
+                end = middle - 1;
+            } else {
+                if (middle == start || array[middle - 1] != num) {
+                    return middle;
                 }
-                h = m - 1;
-            } else if (a[m] < x) {
-                l = m + 1;
+                end = middle - 1;
             }
         }
-        return m + 1;
+        return -1;
     }
 
     /**
