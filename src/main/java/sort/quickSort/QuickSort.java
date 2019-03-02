@@ -1,6 +1,6 @@
 package sort.quickSort;
 
-import util.ArrayUtil;  // 3 1 2 5 8 4
+import util.ArrayUtil;
 
 import java.util.Arrays;
 
@@ -23,7 +23,7 @@ public class QuickSort {
         if (low >= high) {
             return;
         }
-        int i = partition2(a, low, high);
+        int i = partition3(a, low, high);
         quickSort(a, low, i - 1);
         quickSort(a, i + 1, high);
     }
@@ -106,6 +106,8 @@ public class QuickSort {
         }
         if (array[start] > array[e]) {
             ArrayUtil.swap(array, start, e);
+        } else {
+            ArrayUtil.swap(array, ++start, e);
         }
         return start;
     }
