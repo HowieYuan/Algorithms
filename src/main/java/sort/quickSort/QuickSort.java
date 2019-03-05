@@ -23,9 +23,55 @@ public class QuickSort {
         if (low >= high) {
             return;
         }
-        int i = partition3(a, low, high);
+        int i = partition2(a, low, high);
         quickSort(a, low, i - 1);
         quickSort(a, i + 1, high);
+    }
+
+    /**
+     * 推荐方法1：挖坑法
+     */
+    private static int partition1(int[] array, int low, int high) {
+        int temp = array[low];
+        while (low < high) {
+            while (low < high && array[high] >= temp) {
+                high--;
+            }
+            array[low] = array[high];
+
+            while (low < high && array[low] <= temp) {
+                low++;
+            }
+            array[high] = array[low];
+        }
+        array[low] = temp;
+        return low;
+    }
+
+    /**
+     * 推荐方法2：交换法
+     */
+    private int partition2(int[] array, int start, int end) {
+        int middleValue = array[end];
+        int e = end;
+        end--;
+        while (start < end) {
+            while (array[start] < middleValue && end > start) {
+                start++;
+            }
+            while (array[end] >= middleValue && end > start) {
+                end--;
+            }
+            if (start < end) {
+                ArrayUtil.swap(array, start, end);
+            }
+        }
+        if (array[start] > array[e]) {
+            ArrayUtil.swap(array, start, e);
+        } else {
+            ArrayUtil.swap(array, ++start, e);
+        }
+        return start;
     }
 
     private int partition(int[] a, int low, int high) {
@@ -55,61 +101,6 @@ public class QuickSort {
         ArrayUtil.swap(a, low, h);
         //return h 而不是 l，因为要把小的移到左边。
         return h;
-    }
-
-    /**
-     * 推荐
-     */
-    private static int partition2(int[] array, int start, int end) {
-        int temp = array[start];
-        while (start < end) {
-            while (array[end] >= temp && start < end) {
-                end--;
-            }
-            // 从数组结尾开始找到第一个比temp小的索引
-            if (start < end) {
-                // 交换位置
-                array[start] = array[end];
-                // 记住这里end的位置是空的
-                start++;
-            }
-            /* 切换扫描指针 */
-            while (array[start] < temp && start < end) {
-                start++;
-            }
-            // 从数组开头开始找到第一个比temp大的索引
-            if (start < end) {
-                array[end] = array[start];
-                // 这里start的位置是空的
-                end--;
-            }
-        }
-        // start == end
-        array[start] = temp;
-        return start;
-    }
-
-    private int partition3(int[] array, int start, int end) {
-        int middleValue = array[end];
-        int e = end;
-        end--;
-        while (start < end) {
-            while (array[start] < middleValue && end > start) {
-                start++;
-            }
-            while (array[end] >= middleValue && end > start) {
-                end--;
-            }
-            if (start < end) {
-                ArrayUtil.swap(array, start, end);
-            }
-        }
-        if (array[start] > array[e]) {
-            ArrayUtil.swap(array, start, e);
-        } else {
-            ArrayUtil.swap(array, ++start, e);
-        }
-        return start;
     }
 
     /**

@@ -2,6 +2,8 @@ package sort.selection;
 
 import util.ArrayUtil;
 
+import java.util.Arrays;
+
 /**
  * Created with IntelliJ IDEA
  *
@@ -11,19 +13,27 @@ import util.ArrayUtil;
  * @time 22:42
  */
 public class HeapSort {
+    public static void main(String[] args) {
+        HeapSort sort = new HeapSort();
+        int[] a = new int[]{3, 4, 1, 6, 5, 2};
+        System.out.println(Arrays.toString(sort.sort(a)));
+    }
+
     /**
      * 堆排序
      *
      * @param a 待排数组
      */
     public int[] sort(int[] a) {
-        int n = a.length - 1;
+        int n = a.length;
         int k = n / 2;
         while (k > 0) {
+            //通过多次的下沉操作，建大顶堆
             sink(k--, n, a);
         }
         while (n > 1) {
             ArrayUtil.swap(a, 0, n - 1);
+            //通过多次下沉操作，依次取得当前最大值
             sink(1, --n, a);
         }
         return a;
